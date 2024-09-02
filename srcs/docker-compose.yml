@@ -1,0 +1,54 @@
+volumes:
+    wordpress:
+      name: wordpress
+      driver: local
+      driver_opts:
+        device: /home/rayan/volumes/wordpress
+        type: none
+        o: bind
+    mariadb:
+      name: mariadb
+      driver: local
+      driver_opts:
+        device: /home/rayan/volumes/mariadb
+        type: none
+        o: bind 
+services:
+    mariadb:
+      build: ./requirements/mariadb
+      image: mariadb
+      container_name: mariadb
+      networks:
+        - inception
+      volumes:
+        - mariadb:/var/lib/mysql
+      init: true
+    wordpress:
+      build: ./requirements/wordpress
+      image: wordpress
+      container_name: wordpress
+      networks:
+        - inception
+      # ports:
+      #   - "9000:9000"
+      init: true
+      depends_on:
+        - mariadb
+      volumes:
+        - wordpress:/var/www/html
+    nginx:
+      build: ./requirements/nginx
+      image: nginx
+      container_name: nginx
+      networks:
+        - inception
+      ports:
+        - "433:433"
+      init: true
+      depends_on:
+        - wordpress
+      volumes:
+        - wordpress:/var/www/html
+networks:
+  inception:
+    name: inception
