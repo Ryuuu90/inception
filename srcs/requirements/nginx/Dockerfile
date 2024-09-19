@@ -10,6 +10,5 @@ RUN openssl req -x509 -nodes -days 365 \
 
 
 COPY ./conf/default /etc/nginx/sites-available
-# COPY conf/default.conf /etc/nginx/conf.d/default.conf
 
 CMD [ "nginx", "-g", "daemon off;" ]
