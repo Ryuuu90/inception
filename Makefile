@@ -8,8 +8,8 @@ start :
 
 down : 
 		@docker-compose -f ./srcs/docker-compose.yml down -v
-		@sudo rm -rf /home/rayan/volumes/wordpress/*
-		@sudo rm -rf /home/rayan/volumes/mariadb/*
+		@sudo rm -rf /home/rabou-rk/volumes/wordpress/*
+		@sudo rm -rf /home/rabou-rk/volumes/mariadb/*
 
 stop : 
 		@docker-compose -f ./srcs/docker-compose.yml stop

@@ -3,14 +3,14 @@ volumes:
       name: wordpress
       driver: local
       driver_opts:
-        device: /home/rayan/volumes/wordpress
+        device: /home/rabou-rk/volumes/wordpress
         type: none
         o: bind
     mariadb:
       name: mariadb
       driver: local
       driver_opts:
-        device: /home/rayan/volumes/mariadb
+        device: /home/rabou-rk/volumes/mariadb
         type: none
         o: bind 
 services:
@@ -47,7 +47,7 @@ services:
       env_file:
         - .env
       ports:
-        - "433:433"
+        - "443:443"
       init: true
       depends_on:
         - wordpress
